@@ -1,0 +1,15 @@
+version: "3.9"
+#version: "3.3"
+services:
+  web:
+    # build: .
+    image: flask-app
+    ports:
+      - "8000:8000"
+    environment:
+      REDIS_HOST: redis
+      AUTH_TOKEN: ${AUTH_TOKEN}
+    depends_on:
+      - redis
+  redis:
+    image: "redis:6.2.3-alpine"
